@@ -571,6 +571,16 @@ const foxnorPlayer = {
             .catch(err => console.error("Player Business Error:", err));
     },
 
+loadNewVideo: function(newId) {
+        if (this.state.ytInstance && this.state.ytInstance.loadVideoById) {
+            this.config.videoId = newId;
+            this.state.ytInstance.loadVideoById(newId);
+            this.fetchOEmbed();
+            const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?proxy=' + newId;
+            window.history.pushState({path:newurl},'',newurl);
+        }
+    },
+
     setupMediaActions: function() {
         const actions = [
             ['play', () => { this.state.ytInstance.playVideo(); }],
