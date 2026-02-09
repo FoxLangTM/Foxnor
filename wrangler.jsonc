@@ -1,0 +1,8 @@
+{
+  "name": "foxnor-player",
+  "compatibility_date": "2026-02-09",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS"
+  }
+}
