@@ -30,11 +30,83 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        
+               .player-up-container {
+            width: 70%;
+            position: absolute;
+            font-family: sans-serif;
+            left: 4%;
+            top: 2%;
+            height: 28.5px;
+            align-items: right;
+            color: #8F8F8F);
+            background: rgba(15, 15, 15);
+            border-radius: 28px;
+            display: flex;
+            padding: 5px;
+            z-index: 1019;
+            overflow: hidden;
+            margin-right: auto;
+        }
+        
+        .player-up-container-btn {
+            right: 0;
+            position: fixed;
+            font-family: sans-serif;
+            right: 9.5%;
+            top: 2%;
+            height: 35px;
+            width: 35px;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(2, 2, 2);
+            border-radius: 28px;
+            border: 2px solid #2F3136;
+            z-index: 1020;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .player-up-container-btn:hover {
+          animation: player-up-container-btn 1.5s forwards;
+        }
+        
+        @keyframes player-up-container-btn {
+            0% {
+               top: 2%;
+               border-radius: 25px;
+            }
+            20% {
+               border-radius: 25px 25px 17px 17px;
+               top: 3%;
+               rotate: 180deg;
+         }
+            30% {
+               border-radius: 20px 20px 10px 10px;
+               top: 4%;
+               rotate: 270deg;
+             }
+            50% {
+               border-radius: 45px 45px 30px 17px;
+               width: 34px;
+               height: 23px;
+               top: 5%;
+               rotate: 360deg;
+               border: none;
+            }
+            70% {
+               border-radius: 35px 35px 25px 17px;
+               width: 34px;
+               top: 5%;
+               rotate: 70deg;
+            }
+        }
 
         /* Główny kontener */
         .player-container {
+            box-shadow: 0 5px 25px 5px rgba(15, 15, 15); 
             position: fixed;
-            width: 90%; max-width: 800px; max-height: 95vh; background-color: #131313;
+            width: 90%; max-width: 800px; max-height: 95vh; background-color: #141414;
             backdrop-filter: blur(10px); padding: 10px; border-radius: 35px;
             transition: all 0.3s ease, box-shadow 2s ease-in-out;
             transform: translateY(20px);
@@ -46,14 +118,13 @@
             bottom: 0;
             width: 90%;
             position: relative;
-            max-width: 800px;
             height: 130px;
             max-height: 85vh;
             color: rgba(255, 255, 255, 0.9);
-            background: rgba(20, 20, 20, 0.85);
+            background: #121212;
             backdrop-filter: blur(10px);
             border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 30px 30px 0 0;
+            border-radius: 20px 20px 0 0;
             border: 2px solid #2F3136;
             border-bottom: none;
             display: flex;
@@ -122,7 +193,8 @@
         .player-video-wrapper { transform: translateX(-1px); cursor: none; position: relative; width: 90vw; aspect-ratio: 2010/1136; border-radius: 17.5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4);}
         
         .player-custom-cursor {
-            width: 8px; height: 8px; background: #fff; border-radius: 50%;
+            width: 8px; height: 8px;
+            background: #fff; border-radius: 50%;
             position: fixed; 
             pointer-events: none; z-index: 99999;
             mix-blend-mode: difference; 
@@ -187,7 +259,7 @@
         }
 
         #player-btn-play.fa-play::after {
-            content: '';
+            content: ''";
             position: absolute;
             top: -50%; left: -150%;
             width: 50%; height: 200%;
@@ -332,7 +404,9 @@
 <body>
 <div id="player-cursor" class="player-custom-cursor"></div>
 
-<div class="player-up-container" id="player-up-container"></div>
+<div class="player-up-container" id="player-up-container">
+<span>00:00:00</span></div>
+<div class="player-up-container-btn" id="player-up-containe-btn"><i class="fa-solid fa-film" style="color: var(--player-dynamic-color); transform: translateY(9px);"></i></div>
 <div class="player-container" id="player-foxnor-container">
     <header>
         <img src="https://raw.githubusercontent.com/FoxLangTM/LuxurySearchBar.Code/refs/heads/main/Images/foxnor2.png" alt="Logo" class="player-logo-img">
@@ -354,14 +428,14 @@
         </div>
 
         <div class="player-controls-bar">
-            <i class="fas fa-play" id="player-btn-play" onclick="foxnorPlayer.togglePlay()" style="cursor:pointer"></i>
+            <i class="fas fa-play" id="player-btn-play" style="color: var(--player-dynamic-color);" onclick="foxnorPlayer.togglePlay()" style="cursor:pointer"></i>
             <div class="player-progress-container" onclick="foxnorPlayer.seek(event)">
                 <div class="player-progress-buffer" id="player-buffer-bar"></div>
                 <div class="player-progress-fill" id="player-progress-bar"></div>
                 <span id="player-time-remaining" style="position:absolute; right:10px; top:-18px; font-size:10px; color:#888; font-family:monospace;">-0:00</span>
             </div>
-            <i class="fas fa-cog player-control-icon" title="Ustawienia" onclick="alert('Not now...')"></i>
-            <i class="fas fa-expand player-control-icon" title="Pełny ekran" onclick="foxnorPlayer.toggleFullscreen()"></i>
+            <i class="fas fa-cog player-control-icon" style="color: #B3B3B3;"title="Ustawienia" onclick="alert('Not now...')"></i>
+            <i class="fas fa-expand player-control-icon" style="color: #B3B3B3; title="Pełny ekran" onclick="foxnorPlayer.toggleFullscreen()"></i>
         </div>
     </div>
 
