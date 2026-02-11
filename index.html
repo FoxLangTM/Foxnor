@@ -15,13 +15,14 @@
         :root { --player-dynamic-color: #1a1a1a; }
         
         body {
-            background: linear-gradient(to bottom, var(--player-dynamic-color) 0%, #1A1B20 100%);
+            background: linear-gradient(to bottom, var(--player-dynamic-color) 0%, #1A1B20 45%);
             background-attachment: fixed; color: white; margin: 0;
             display: flex; justify-content: center; align-items: center;
             min-height: 100vh; font-family: 'Red Hat Display', sans-serif;
             transition: background 1.5s ease; user-select: none;
             -webkit-tap-highlight-color: transparent;
             animation: player-gradientMove 10s ease infinite;
+            flex-direction: column;
         }
 
         @keyframes player-gradientMove {
@@ -32,20 +33,64 @@
 
         /* Główny kontener */
         .player-container {
-            width: 90%; max-width: 800px; background-color: #131313;
-            backdrop-filter: blur(10px); padding: 5px; border-radius: 25px;
-            box-shadow: 0 0 50px -10px var(--player-dynamic-color);
+            position: fixed;
+            width: 90%; max-width: 800px; max-height: 95vh; background-color: #131313;
+            backdrop-filter: blur(10px); padding: 10px; border-radius: 35px;
             transition: all 0.3s ease, box-shadow 2s ease-in-out;
-            border: 2px solid #2F3136;
             transform: translateY(20px);
             animation: player-revealPlayer 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards, 
                        player-container-pulse 4s ease-in-out infinite;
         }
-
-        @keyframes player-container-pulse {
-            0%, 100% { box-shadow: 0 0 50px -10px var(--player-dynamic-color); }
-            50% { box-shadow: 0 0 70px -5px var(--player-dynamic-color); }
+        
+                .player-down-container {
+            bottom: 0;
+            width: 90%;
+            position: relative;
+            max-width: 800px;
+            height: 130px;
+            max-height: 85vh;
+            color: rgba(255, 255, 255, 0.9);
+            background: rgba(20, 20, 20, 0.85);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px 30px 0 0;
+            border: 2px solid #2F3136;
+            border-bottom: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            padding: 5px;
+            text-align: center;
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                max-height 0.4s ease, 
+                background 0.3s ease;
+            z-index: 1000;
+            overflow: hidden;
+            margin-top: auto;
         }
+        
+        .drag-handle {
+    width: 45px;
+    height: 4px;
+    background: rgba(150, 150, 150, 0.2);
+    border-radius: 25px;
+    margin-top: 5px;
+    transition: margin-left 0.8s cubic-bezier(0.4, 0, 0.2, 1), background 0.5s;
+}
+        
+        .player-down-container:hover {
+    transform: translateY(0);
+    min-height: 65.7vh;
+}
+.player-down-container.is-active {
+    transform: translateY(0);
+    min-height: 65.7vh;
+}
+
+.player-down-container.is-active .drag-handle {
+    margin-left: 70%;
+}
 
         @keyframes player-revealPlayer {
             to { transform: translateY(0); }
@@ -156,7 +201,7 @@
         }
 
         /* Info & Opis */
-        .player-info-section { display: flex; gap: 15px; padding: 7px 5px; align-items: flex-start; }
+        .player-info-section { display: flex; gap: 15px; overflow-y: auto; flex-shrink: 1; padding: 7px 5px; align-items: flex-start; }
         .player-avatar { width: 45px; height: 45px; border-radius: 25px; background-size: cover; flex-shrink: 0; transition: border 1s; }
         .player-content { flex-grow: 1; }
         .player-video-real-title { font-size: 13px; color: #555; font-weight: 500; }
@@ -260,13 +305,34 @@
 
         .player-description-area { margin-top: 12px; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 10px; display: none; font-size: 12px; color: #888; line-height: 1.6; }
         .player-description-area.player-active { display: block; }
-        .player-more-btn { background: none; border: none; color: #444; cursor: pointer; font-size: 11px; font-weight: bold; margin-top: 8px; padding: 0; transition: 0.2s; }
+        .player-more-btn { background: none; padding: 5px 12px; display: inline-block; z-index: 11; margin-top: 5px; border: none; color: #444; cursor: pointer; font-size: 11px; font-weight: bold; margin-top: 8px; padding: 0; transition: 0.2s; }
         .player-more-btn:hover { color: #888; }
+        
+        .player-description-area.player-active {
+    display: block;
+    /* 1. Limit wysokości dla ok. 5 linijek (zakładając line-height 1.6) */
+    max-width: 80%; max-height: 270px; 
+    overflow-y: auto; /* Włączamy scroll tylko wewnątrz opisu */
+    padding-right: 5px; /* Miejsce na scrollbar */
+    
+    /* Stylowy, minimalistyczny scrollbar dla ochrony wzroku */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.2) transparent;
+}
+
+.player-description-area.player-active::-webkit-scrollbar {
+    width: 3px;
+}
+.player-description-area.player-active::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+}
     </style>
 </head>
 <body>
 <div id="player-cursor" class="player-custom-cursor"></div>
 
+<div class="player-up-container" id="player-up-container"></div>
 <div class="player-container" id="player-foxnor-container">
     <header>
         <img src="https://raw.githubusercontent.com/FoxLangTM/LuxurySearchBar.Code/refs/heads/main/Images/foxnor2.png" alt="Logo" class="player-logo-img">
@@ -306,16 +372,19 @@
         </div>
         <div class="player-content">
             <strong id="player-video-main-title" class="player-video-real-title">...</strong>
-            <div id="player-video-desc" class="player-description-area">
-                Downloading video information...
-            </div>
             <button class="player-more-btn" onclick="foxnorPlayer.toggleDescription()">⌵ show more</button>
+            <div id="dynamic-btn-container"></div>
         </div>
     </div>
 </div>
 
-<img id="player-color-ref" crossorigin="anonymous" style="display:none">
+<div class="player-down-container" id="player-down-container">
+      <div class="drag-handle"></div>
+                  <div id="player-video-desc" class="player-description-area">
+Not now...            </div>
+</div>
 
+<img id="player-color-ref" crossorigin="anonymous" style="display:none">
 <script>
 // --- GLOBALNY OBIEKT "foxnorPlayer" (Namespace) ---
 // Wszystkie funkcje i zmienne są teraz właściwościami tego obiektu
@@ -345,7 +414,8 @@ const foxnorPlayer = {
         currentBrightness: 0,
         lastTap: 0,
         hideTimeout: null,
-        cursorTimeout: null
+        cursorTimeout: null,
+        touchStartY: 0
     },
 
     // --- NARZĘDZIA ZEWNĘTRZNE ---
@@ -381,6 +451,12 @@ const foxnorPlayer = {
 
         // Setup Hover Title
         this.setupHoverTitle();
+        
+        // Setup Down Container Panel
+        this.setupDownPanelGestures();
+        
+        // Setup Down Container Resize
+        window.addEventListener('resize', () => this.adjustPanelHeight());
     },
 
     // --- LOGIKA YOUTUBE ---
@@ -453,9 +529,29 @@ const foxnorPlayer = {
 
     toggleDescription: function() {
         const area = document.getElementById('player-video-desc');
-        const btn = document.querySelector('.player-more-btn');
-        area.classList.toggle('player-active');
-        btn.innerText = area.classList.contains('player-active') ? '︽ show less' : '⌵ show more';
+        const downPanel = document.getElementById('player-down-container');
+        const mainBtn = document.querySelector('.player-content .player-more-btn');
+        const dynamicContainer = document.getElementById('dynamic-btn-container');
+        
+        // Przełączamy klasę aktywności opisu
+        const isActive = area.classList.toggle('player-active');
+        
+        if (isActive) {
+            // ROZWINIĘTE: Otwieramy też cały panel dolny, żeby opis był widoczny
+            downPanel.classList.add('is-active');
+            mainBtn.style.display = 'none'; // Chowamy "show more" pod tytułem
+            
+            // Wstrzykujemy "show less" do kontenera w górnej części
+            dynamicContainer.innerHTML = `
+                <button class="player-more-btn" onclick="foxnorPlayer.toggleDescription()">︽ show less</button>
+            `;
+        } else {
+            // ZWINIĘTE: Zamykamy panel i przywracamy stan pierwotny
+            downPanel.classList.remove('is-active');
+            mainBtn.style.display = 'block';
+            dynamicContainer.innerHTML = '';
+            area.scrollTop = 0; // Ochrona wzroku
+        }
     },
 
     // --- GESTY ---
@@ -547,9 +643,8 @@ const foxnorPlayer = {
                         const color = this.tools.colorThief.getColor(img);
                         const r = color[0], g = color[1], b = color[2];
                         
-                        const darkBg = `rgb(${Math.floor(r*0.15)}, ${Math.floor(g*0.15)}, ${Math.floor(b*0.15)})`;
-                        const accentBg = `rgb(${Math.floor(r*0.05)}, ${Math.floor(g*0.05)}, ${Math.floor(b*0.1)})`;
-                        document.body.style.background = `radial-gradient(circle at 50% 50%, ${darkBg} 0%, ${accentBg} 100%)`;
+                        const dynamicColor = `rgb(${r}, ${g}, ${b})`;
+                        document.documentElement.style.setProperty('--player-dynamic-color', dynamicColor);
                         document.body.style.backgroundSize = "200% 200%";
                         
                         const avatarDiv = document.getElementById('player-dynamic-avatar');
@@ -569,16 +664,6 @@ const foxnorPlayer = {
                 }, 1000);
             })
             .catch(err => console.error("Player Business Error:", err));
-    },
-
-loadNewVideo: function(newId) {
-        if (this.state.ytInstance && this.state.ytInstance.loadVideoById) {
-            this.config.videoId = newId;
-            this.state.ytInstance.loadVideoById(newId);
-            this.fetchOEmbed();
-            const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?proxy=' + newId;
-            window.history.pushState({path:newurl},'',newurl);
-        }
     },
 
     setupMediaActions: function() {
@@ -701,7 +786,60 @@ loadNewVideo: function(newId) {
         document.querySelector('.player-progress-container').addEventListener('mouseleave', () => {
             this.fetchOEmbed();
         });
-    }
+    },
+    setupDownPanelGestures: function() {
+        const downContainer = document.getElementById('player-down-container');
+        if (!downContainer) return;
+
+        // 1. GESTY PRZESUWANIA (GÓRA / DÓŁ)
+        downContainer.addEventListener('touchstart', (e) => {
+            this.state.touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        window.addEventListener('touchmove', (e) => {
+            if (this.state.touchStartY === 0) return;
+
+            const currentY = e.touches[0].clientY;
+            const diff = this.state.touchStartY - currentY;
+
+            // Otwieranie (ruch w górę)
+            if (diff > 15) { 
+                downContainer.classList.add('is-active');
+                this.adjustPanelHeight();
+                this.state.touchStartY = 0; 
+            }
+            // Zamykanie (ruch w dół - tylko jeśli panel jest otwarty)
+            else if (diff < -15 && downContainer.classList.contains('is-active')) {
+                downContainer.classList.remove('is-active');
+                downContainer.style.height = '130px';
+                this.state.touchStartY = 0;
+            }
+        }, { passive: true });
+
+        window.addEventListener('touchend', () => {
+            this.state.touchStartY = 0;
+        });
+
+        // 2. ZAMYKANIE PRZEZ KLIKNIĘCIE W TŁO / POZA PANEL
+        window.addEventListener('touchstart', (e) => {
+            // Sprawdzamy: czy panel jest otwarty ORAZ czy dotknięte miejsce NIE jest panelem
+            if (downContainer.classList.contains('is-active') && !downContainer.contains(e.target)) {
+                downContainer.classList.remove('is-active');
+            }
+        }, { passive: true });
+    },
+    
+    adjustPanelHeight: function() {
+        const downContainer = document.getElementById('player-down-container');
+        if (!downContainer) return;
+
+        if (downContainer.classList.contains('is-active')) {
+            // Po prostu pozwalamy CSS-owi przejąć kontrolę nad wysokością 65.5vh
+            downContainer.style.height = ''; 
+        } else {
+            downContainer.style.height = '130px';
+        }
+    },
 };
 
 // --- ŁADOWANIE API YOUTUBE (Globalny Callback) ---
