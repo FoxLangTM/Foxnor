@@ -58,5 +58,6 @@
       "label": "FoxNor Mobile Experience"
     }
   ],
-  "prefer_related_applications": false
+  "scope": "/",
+  "related_applications": [],
 }
