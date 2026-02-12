@@ -1,0 +1,5 @@
+1[ /*🎵 FoxNor: Your favorite video player, only... lighter. Do you have an older phone or simply appreciate minimalism?
+ I created FoxNor – an intelligent video browser that changes the game. No ads: Clean images, no unnecessary interruptions.
+ Low-End Performance: Runs smoothly where other apps fail. Privacy: No trackers, just you and your videos. Eye-Friendly Design: A dark, uncluttered interface that protects your eyes.
+ Check out the future of lightweight streaming on my GitHub. FoxNor isn't just a player, it's your new window to the world of video. ♦️💻 
+Project Link: []*/
