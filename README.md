@@ -1,13 +1,7 @@
 # ♦️ FoxNor | Minimalist Video Browser API
 
 ![Logo](Images/FoxNor.png)
-<div align="center">
-  <table>
-    <tr>
-      <td><img src="Images/FoxNor-video.gif" alt="FoxNor Demo"></td>
-    </tr>
-  </table>
-</div>
+
 **FoxNor** is a one-of-a-kind, stable video player designed specifically for low-end devices. It allows you to watch videos from various platforms ad-free, with a focus on speed, privacy, and minimalist design.
 
 ## 🚀 Key Features
