@@ -22,5 +22,5 @@
 * `Images/` - Brand assets and icons.
 
 ---
-foxlang.team@gmail.com
+foxlang.team @gmail.com
 *Created with passion by the FoxLang Team.*
