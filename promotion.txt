@@ -2,4 +2,7 @@
  I created FoxNor – an intelligent video browser that changes the game. No ads: Clean images, no unnecessary interruptions.
  Low-End Performance: Runs smoothly where other apps fail. Privacy: No trackers, just you and your videos. Eye-Friendly Design: A dark, uncluttered interface that protects your eyes.
  Check out the future of lightweight streaming on my GitHub. FoxNor isn't just a player, it's your new window to the world of video. ♦️💻 
-Project Link: []*/
+Site Link: [https://foxnor.foxlang-team.workers.dev]
+Project Link: [https://github.com/FoxLangTM/Foxnor]*/
+
+2[ /*I built a minimalist, ad-free video browser for low-end devices. It's GPLv3, privacy-focused, and has a custom UI that protects your eyes.*/
