@@ -23,4 +23,4 @@
 
 ---
 *Created with passion by the FoxLang Team.*
-<img src="Images/FoxNor-video.gif" style="border-radius: 15px;" alt="FoxNor">
+<img src="Images/FoxNor-video.gif" style="border-radius: 15px; transform: scale(0.5);" alt="FoxNor">
