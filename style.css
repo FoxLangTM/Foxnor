@@ -1,10 +1,4 @@
         :root { --player-dynamic-color: #1a1a1a; }
-        
-        @font-face {
-  font-family: 'Font Awesome 5 Free';
-  font-display: swap;
-  src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/webfonts/fa-solid-900.woff2') format('woff2');
-}
 
         body {
             background: linear-gradient(to bottom, var(--player-dynamic-color) 0%, #1A1B20 45%);
