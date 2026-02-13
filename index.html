@@ -497,6 +497,7 @@ We guarantee stability, speed, security, and no advertisers. Try it, you won't r
                 <span id="player-time-remaining" style="position:absolute; right:10px; top:-18px; font-size:10px; color:#888; font-family:monospace;">-0:00</span>
             </div>
             <i class="fas fa-cog player-control-icon" style="color: #B3B3B3;"title="Ustawienia" onclick="alert('Not now...')"></i>
+            <i class="fas fa-external-link-alt player-control-icon" style="color: #B3B3B3;" title="PiP Mode" onclick="foxnorPlayer.togglePiP()"></i>
             <i class="fas fa-expand player-control-icon" style="color: #B3B3B3; title="Pełny ekran" onclick="foxnorPlayer.toggleFullscreen()"></i>
         </div>
     </div>
@@ -662,6 +663,27 @@ const foxnorPlayer = {
         if (!document.fullscreenElement) elem.requestFullscreen();
         else document.exitFullscreen();
     },
+    
+    togglePiP: async function() {
+    try {
+        const videoWrapper = document.getElementById('player-v-wrapper');
+        
+        if (document.pictureInPictureElement) {
+            await document.exitPictureInPicture();
+        } else if (document.pictureInPictureEnabled) {
+            // Uwaga: Niektóre przeglądarki wymagają tagu <video>. 
+            // Jeśli iframe blokuje dostęp, wyświetlimy komunikat biznesowy.
+            const video = document.querySelector('video'); 
+            if (video) {
+                await video.requestPictureInPicture();
+            } else {
+                alert("PiP jest ograniczony przez politykę odtwarzacza zewnętrznego. Użyj trybu pełnoekranowego.");
+            }
+        }
+    } catch (error) {
+        console.error("Błąd PiP:", error);
+    }
+},
 
     toggleDescription: function() {
         const area = document.getElementById('player-video-desc');
