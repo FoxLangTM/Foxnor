@@ -21,6 +21,8 @@
 * `manifest.json` - PWA configuration.
 * `Images/` - Brand assets and icons.
 
+## 📮 Aditional information
+foxlang.team@gmail.com - gmail
+
 ---
-foxlang.team@gmail.com
 *Created with passion by the FoxLang Team.*
