@@ -27,7 +27,7 @@
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 
     <link rel="icon" href="Images/favicon.ico" sizes="any">
-    <link rel="apple-touch-icon" href="Images/FoxNor.png">
+    <link rel="apple-touch-icon" href="Images/FoxNor.png" fetchpriority="high" alt="FoxNor Logo">
     <link rel="manifest" href="/manifest.json">
 
     <link rel="stylesheet" href="style.css">
@@ -65,7 +65,7 @@
 <div class="player-up-container-btn" id="player-up-containe-btn"><i class="fa-solid fa-film" style="color: var(--player-dynamic-color); transform: translateY(9px);"></i></div>
 <div class="player-container" id="player-foxnor-container" role="main">
     <header>
-        <img src="https://raw.githubusercontent.com/FoxLangTM/LuxurySearchBar.Code/refs/heads/main/Images/foxnor2.png" alt="Logo" class="player-logo-img">
+        <img src="https://raw.githubusercontent.com/FoxLangTM/LuxurySearchBar.Code/refs/heads/main/Images/foxnor2.png" alt="Logo" class="player-logo-img" fetchpriority="high">
         <span class="player-app-name">foxnor</span>
         <div id="player-search-title" class="player-video-title-box">⌕ Searching videos</div>
     </header>
@@ -192,23 +192,24 @@ const foxnorPlayer = {
 
     // --- LOGIKA YOUTUBE ---
     onYouTubeReady: function(e) {
-        if (navigator.connection) {
-            const speed = navigator.connection.downlink;
-            if (speed < 2) {
-                this.state.ytInstance.setPlaybackQuality('medium');
-            } else {
-                this.state.ytInstance.setPlaybackQuality('highres');
-            }
+    if (navigator.connection) {
+        const speed = navigator.connection.downlink;
+        if (speed < 2) {
+            this.state.ytInstance.setPlaybackQuality('medium');
+        } else {
+            this.state.ytInstance.setPlaybackQuality('highres');
         }
-        
-        const frame = e.target.getIframe();
-        frame.removeAttribute('allow');
-        frame.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+    }
+    
+    const frame = e.target.getIframe();
+    frame.removeAttribute('allow');
+    frame.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+    frame.setAttribute('sandbox', 'allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-presentation');
 
-        this.fetchOEmbed(); 
-        this.updateProgress();
-        this.setupGestures(); 
-    },
+    this.fetchOEmbed(); 
+    this.updateProgress();
+    this.setupGestures(); 
+},
 
     onPlayerStateChange: function(event) {
         const playBtn = document.getElementById('player-btn-play');
@@ -615,7 +616,7 @@ function onYouTubeIframeAPIReady() {
     foxnorPlayer.config.videoId = currentId;
 
     foxnorPlayer.state.ytInstance = new YT.Player('player-main-iframe', {
-        host: 'https://www.youtube-nocookie.com', // To klucz do czystego SEO!
+        host: 'https://www.youtube-nocookie.com',
         videoId: currentId,
         playerVars: { 
             'controls': 0, 'fs': 0, 'modestbranding': 1, 'rel': 0, 
