@@ -447,21 +447,3 @@
     aspect-ratio: 16 / 9 !important; /* Wymusza proporcje kinowe */
     overflow: hidden;
 }
-
-#player-main-iframe {
-    width: 100% !important;
-    height: 100% !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-body {
-    min-height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-}
