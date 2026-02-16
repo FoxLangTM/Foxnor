@@ -11,25 +11,73 @@
             flex-direction: column;
         }
         
-/* --- FINALNY FIX RESPONSYWNOŚCI --- */
+/* --- AGRESYWNY UPGRADE SKALOWANIA DLA DESKTOPU --- */
 @media (min-width: 1024px) {
-    /* Główny kontener FoxNor */
+    /* Powiększamy główny kontener i nadajemy mu strukturę */
     .player-container {
-        width: 85% !important; /* Dajemy oddech po bokach */
+        width: 85% !important;
         max-width: 1200px;
-        margin: 2vh auto !important; /* Centrowanie w pionie i poziomie */
-        height: auto !important;
-        display: flex;
+        margin: 4vh auto !important;
+        padding: 25px !important; /* Większy margines wewnętrzny */
+        border-radius: 45px !important;
+        position: relative !important;
+        display: flex !important;
         flex-direction: column;
     }
 
-    /* Klucz do proporcji: wideo nie może rozciągać się bez końca */
-    .player-video-wrapper {
-        width: 100% !important;
-        max-height: 70vh !important; /* Blokujemy wideo na 70% wysokości ekranu */
-        margin: 0 auto;
+    /* Skalujemy Nagłówek (Logo i Nazwa) */
+    header {
+        margin-bottom: 20px !important;
     }
- }
+    .player-logo-img {
+        width: 40px !important; /* Większe logo */
+        height: 40px !important;
+        transform: scale(1.5) !important;
+    }
+    .player-app-name {
+        font-size: 32px !important; /* Wyraźniejsza nazwa aplikacji */
+    }
+
+    /* Skalujemy napisy pod playerem */
+    .player-video-real-title {
+        font-size: 18px !important; /* Tytuł musi być czytelny */
+    }
+    .player-more-btn {
+        font-size: 14px !important;
+        padding: 5px 15px !important;
+    }
+
+    /* Naprawa paska czasu i przycisku na górze (Island) */
+    .player-up-container {
+        width: 400px !important; /* Dłuższy pasek na desktopie */
+        height: 40px !important;
+        top: 3% !important;
+        font-size: 16px !important;
+    }
+    .player-up-container span {
+        transform: translateY(20%) !important;
+    }
+    .player-up-container-btn {
+        width: 50px !important;
+        height: 50px !important;
+        top: 3% !important;
+        right: 5% !important;
+    }
+
+    /* Powiększamy pasek kontrolny wewnątrz wideo */
+    .player-controls-bar {
+        height: 70px !important;
+    }
+    .player-control-icon {
+        font-size: 24px !important; /* Większe ikony Play/Pause */
+    }
+
+    /* Większy Avatar i system kolców */
+    .player-avatar-viz, .player-avatar, .player-spike-system {
+        width: 65px !important;
+        height: 65px !important;
+    }
+}
 
         @keyframes player-gradientMove {
             0% { background-position: 0% 50%; }
@@ -291,7 +339,7 @@
         }
 
         #player-btn-play.fa-play::after {
-            content: ''";
+            content: '';
             position: absolute;
             top: -50%; left: -150%;
             width: 50%; height: 200%;
