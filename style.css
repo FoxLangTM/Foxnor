@@ -12,72 +12,93 @@
         }
         
 /* --- AGRESYWNY UPGRADE SKALOWANIA DLA DESKTOPU --- */
+/* --- KOMPLEKSOWY UPGRADE SKALOWANIA (Desktop) --- */
 @media (min-width: 1024px) {
-    /* Powiększamy główny kontener i nadajemy mu strukturę */
+    /* 1. GŁÓWNY KONTENER - Centrowanie i powiększenie */
     .player-container {
-        width: 85% !important;
-        max-width: 1200px;
-        margin: 4vh auto !important;
-        padding: 25px !important; /* Większy margines wewnętrzny */
-        border-radius: 45px !important;
-        position: relative !important;
-        display: flex !important;
-        flex-direction: column;
+        width: 85vw !important;
+        max-width: 1400px !important;
+        padding: 25px !important;
+        border-radius: 50px !important;
+        left: 50% !important;
+        top: 50% !important;
+        transform: translate(-50%, -45%) !important; /* Centrowanie w obu osiach */
+        box-shadow: 0 20px 80px rgba(0,0,0,0.8) !important;
     }
 
-    /* Skalujemy Nagłówek (Logo i Nazwa) */
+    /* 2. NAGŁÓWEK - Logo i Nazwa */
     header {
-        margin-bottom: 20px !important;
+        margin-bottom: 15px !important;
+        padding: 0 20px !important;
     }
     .player-logo-img {
-        width: 40px !important; /* Większe logo */
-        height: 40px !important;
-        transform: scale(1.5) !important;
+        width: 45px !important;
+        height: 45px !important;
+        transform: scale(1.6) !important;
     }
     .player-app-name {
-        font-size: 32px !important; /* Wyraźniejsza nazwa aplikacji */
+        font-size: 34px !important;
+        margin-left: 20px !important;
     }
 
-    /* Skalujemy napisy pod playerem */
+    /* 3. ISLAND (Pasek czasu na górze) */
+    .player-up-container {
+        width: 450px !important; /* Znacznie szerszy */
+        height: 45px !important;
+        font-size: 18px !important;
+        top: 25px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        justify-content: center !important;
+        padding: 8px 20px !important;
+    }
+    .player-up-container-btn {
+        width: 55px !important;
+        height: 55px !important;
+        right: 5% !important;
+        top: 25px !important;
+        font-size: 20px !important;
+    }
+
+    /* 4. WIDEO I KONTROLE */
+    .player-video-wrapper {
+        border-radius: 30px !important;
+        border-width: 2px !important;
+    }
+    .player-controls-bar {
+        height: 75px !important;
+        padding: 0 30px !important;
+    }
+    .player-control-icon {
+        font-size: 26px !important;
+        margin-left: 25px !important;
+    }
+    .player-progress-container {
+        height: 5px !important; /* Grubszy pasek dla łatwiejszej obsługi myszką */
+    }
+
+    /* 5. INFO SECTION - Avatar i Teksty */
+    .player-info-section {
+        padding: 15px !important;
+        gap: 25px !important;
+    }
+    .player-avatar-viz, .player-avatar, .player-spike-system {
+        width: 70px !important; /* Potężniejszy avatar */
+        height: 70px !important;
+    }
     .player-video-real-title {
-        font-size: 18px !important; /* Tytuł musi być czytelny */
+        font-size: 20px !important; /* Duży, czytelny tytuł */
     }
     .player-more-btn {
         font-size: 14px !important;
-        padding: 5px 15px !important;
+        margin-top: 10px !important;
     }
-
-    /* Naprawa paska czasu i przycisku na górze (Island) */
-    .player-up-container {
-        width: 400px !important; /* Dłuższy pasek na desktopie */
-        height: 40px !important;
-        top: 3% !important;
-        font-size: 16px !important;
-    }
-    .player-up-container span {
-        transform: translateY(20%) !important;
-    }
-    .player-up-container-btn {
-        width: 50px !important;
-        height: 50px !important;
-        top: 3% !important;
-        right: 5% !important;
-    }
-
-    /* Powiększamy pasek kontrolny wewnątrz wideo */
-    .player-controls-bar {
-        height: 70px !important;
-    }
-    .player-control-icon {
-        font-size: 24px !important; /* Większe ikony Play/Pause */
-    }
-
-    /* Większy Avatar i system kolców */
-    .player-avatar-viz, .player-avatar, .player-spike-system {
-        width: 65px !important;
-        height: 65px !important;
+    .player-description-area {
+        font-size: 15px !important; /* Większy opis dla ochrony wzroku */
+        max-height: 350px !important;
     }
 }
+
 
         @keyframes player-gradientMove {
             0% { background-position: 0% 50%; }
