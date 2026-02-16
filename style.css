@@ -10,6 +10,31 @@
             animation: player-gradientMove 10s ease infinite;
             flex-direction: column;
         }
+        
+@media (min-width: 1024px) {
+    /* Centrujemy główny kontener i ograniczamy go, by nie był gigantyczny */
+    #player-foxnor-container {
+        max-width: 1100px; 
+        margin: 40px auto; /* 40px od góry, auto na boki centruje boks */
+        border-radius: 24px;
+        box-shadow: 0 30px 60px rgba(0,0,0,0.8); /* Efekt głębi premium */
+    }
+
+    /* Naprawiamy proporcje wideo, żeby nie było za wysokie */
+    .player-video-wrapper {
+        width: 100%;
+        aspect-ratio: 16 / 9; /* To pilnuje, by wideo zawsze było idealnym prostokątem */
+        height: auto; 
+    }
+
+    /* Górny licznik czasu (Island) też powinien być na środku */
+    #player-up-container {
+        left: 50%;
+        transform: translateX(-50%);
+        width: fit-content;
+        padding: 5px 30px;
+    }
+}
 
         @keyframes player-gradientMove {
             0% { background-position: 0% 50%; }
@@ -200,7 +225,7 @@
         }
 
         /* Wrapper Wideo */
-        .player-video-wrapper { transform: translateX(-1px); cursor: none; position: relative; width: 90vw; aspect-ratio: 2010/1136; border-radius: 17.5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4);}
+        .player-video-wrapper { transform: translateX(-1px); cursor: none; position: relative; width: 90vw; aspect-ratio: 2010/1136; height: auto; border-radius: 17.5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4);}
         
         .player-custom-cursor {
             width: 8px; height: 8px;
@@ -215,7 +240,7 @@
         }
 
         /* Iframe na spodzie */
-        #player-main-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, #1D1D1D 50%, #282828 50%); border: none; z-index: 1; }
+        #player-main-iframe { position: absolute; top: 0; left: 0; width: 100% !important; height: 100% !important; background: linear-gradient(to top, #1D1D1D 50%, #282828 50%); border: none; display: block; z-index: 1; }
         
         /* STREFY GESTÓW */
         .player-gesture-zone { position: absolute; top: 0; height: 100%; width: 25%; z-index: 10; cursor: ns-resize; }
