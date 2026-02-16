@@ -225,7 +225,7 @@
         }
 
         /* Wrapper Wideo */
-        .player-video-wrapper { transform: translateX(-1px); cursor: none; position: relative; width: 90vw; aspect-ratio: 2010/1136; height: auto; border-radius: 17.5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4);}
+        .player-video-wrapper { transform: translateX(-1px); cursor: none; position: relative; width: 90vw; aspect-ratio: 16/9; height: auto; border-radius: 17.5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4);}
         
         .player-custom-cursor {
             width: 8px; height: 8px;
