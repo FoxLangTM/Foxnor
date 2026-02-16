@@ -11,30 +11,25 @@
             flex-direction: column;
         }
         
+/* --- FINALNY FIX RESPONSYWNOŚCI --- */
 @media (min-width: 1024px) {
-    /* Centrujemy główny kontener i ograniczamy go, by nie był gigantyczny */
+    /* Główny kontener FoxNor */
     #player-foxnor-container {
-        max-width: 1100px; 
-        margin: 40px auto; /* 40px od góry, auto na boki centruje boks */
-        border-radius: 24px;
-        box-shadow: 0 30px 60px rgba(0,0,0,0.8); /* Efekt głębi premium */
+        width: 85% !important; /* Dajemy oddech po bokach */
+        max-width: 1200px;
+        margin: 2vh auto !important; /* Centrowanie w pionie i poziomie */
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
     }
 
-    /* Naprawiamy proporcje wideo, żeby nie było za wysokie */
+    /* Klucz do proporcji: wideo nie może rozciągać się bez końca */
     .player-video-wrapper {
-        width: 100%;
-        aspect-ratio: 16 / 9; /* To pilnuje, by wideo zawsze było idealnym prostokątem */
-        height: auto; 
+        width: 100% !important;
+        max-height: 70vh !important; /* Blokujemy wideo na 70% wysokości ekranu */
+        margin: 0 auto;
     }
-
-    /* Górny licznik czasu (Island) też powinien być na środku */
-    #player-up-container {
-        left: 50%;
-        transform: translateX(-50%);
-        width: fit-content;
-        padding: 5px 30px;
-    }
-}
+ }
 
         @keyframes player-gradientMove {
             0% { background-position: 0% 50%; }
@@ -225,7 +220,7 @@
         }
 
         /* Wrapper Wideo */
-        .player-video-wrapper { transform: translateX(-1px); cursor: none; position: relative; width: 90vw; aspect-ratio: 16/9; height: auto; border-radius: 17.5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4);}
+        .player-video-wrapper { transform: translateX(-1px); cursor: none; position: relative; width: 90vw; aspect-ratio: 2010/1136; height: auto; border-radius: 17.5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4);}
         
         .player-custom-cursor {
             width: 8px; height: 8px;
