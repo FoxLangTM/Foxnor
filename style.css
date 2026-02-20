@@ -1,4 +1,4 @@
-        :root { --player-dynamic-color: #1a1a1a; }
+        :root { --player-dynamic-color: #1a1a1a; --f-scale: 1; }
 
         body {
             background: linear-gradient(to bottom, var(--player-dynamic-color) 0%, #1A1B20 45%);
@@ -11,8 +11,6 @@
             flex-direction: column;
         }
         
-/* --- AGRESYWNY UPGRADE SKALOWANIA DLA DESKTOPU --- */
-/* --- KOMPLEKSOWY UPGRADE SKALOWANIA (Desktop) --- */
 @media (min-width: 1024px) {
     /* 1. GŁÓWNY KONTENER - Centrowanie i powiększenie */
     .player-container {
@@ -26,66 +24,15 @@
         box-shadow: 0 20px 80px rgba(0,0,0,0.8) !important;
     }
     
-    /* --- SKALOWANIE OBIEKTÓW DLA DESKTOPU (Bez skalowania Video) --- */
-/* --- BRUTALNE POWIĘKSZENIE MAŁYCH OBIEKTÓW --- */
-@media (min-width: 1024px) {
-    /* 1. GÓRNA WYSPA (Island) - Musi być widoczna */
-    .player-up-container {
-        width: 600px !important; /* Znacznie szerszy pasek */
-        height: 55px !important;
-        top: 30px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important; /* Idealne centrowanie */
-        font-size: 22px !important; /* Większy zegar */
-        padding: 10px 25px !important;
-    }
-
-    /* 2. PRZYCISK FILMU (Ten obok Island) */
-    .player-up-container-btn {
-        width: 65px !important;
-        height: 65px !important;
-        top: 25px !important;
-        right: 40px !important; /* Odsunięcie od krawędzi */
-    }
-    .player-up-container-btn i {
-        font-size: 30px !important; /* Większa ikonka w środku */
-        transform: translateY(15px) !important;
-    }
-
-    /* 3. LOGO I NAZWA - Prestiż marki FoxNor */
-    header {
-        margin-bottom: 25px !important;
-    }
-    .player-logo-img {
-        width: 60px !important;
-        height: 60px !important;
-        transform: scale(1.5) !important;
-    }
-    .player-app-name {
-        font-size: 45px !important;
-        margin-left: 30px !important;
-    }
-
-    /* 4. DOLNA SEKCJA (Avatar i Tytuł) */
-    .player-avatar-viz, .player-avatar, .player-spike-system {
-        width: 90px !important; /* Potężny avatar */
-        height: 90px !important;
-    }
-    .player-video-real-title {
-        font-size: 24px !important; /* Czytelny tytuł dla ochrony wzroku */
-    }
-    .player-more-btn {
-        font-size: 18px !important;
-        margin-top: 15px !important;
-    }
-
-    /* 5. PASEK KONTROLNY (Ikony Play/Settings) */
-    .player-controls-bar i {
-        font-size: 32px !important; /* Wielkie ikony pod wideo */
-        margin-right: 25px !important;
+@media screen and (min-width: 1000px), screen and (min-aspect-ratio: 16/9) {
+    :root {
+        --f-scale: 2; /* Skala dla komputerów */
     }
 }
 
+.player-up-container, .player-up-container-btn, header, .player-info-section .player-controls-bar {
+    zoom: var(--f-scale);
+}
 
     /* 2. NAGŁÓWEK - Logo i Nazwa */
     header {
