@@ -27,38 +27,62 @@
     }
     
     /* --- SKALOWANIE OBIEKTÓW DLA DESKTOPU (Bez skalowania Video) --- */
+/* --- BRUTALNE POWIĘKSZENIE MAŁYCH OBIEKTÓW --- */
 @media (min-width: 1024px) {
-    /* 1. Skalujemy górną wyspę (Island) i jej przycisk */
-    .player-up-container, 
+    /* 1. GÓRNA WYSPA (Island) - Musi być widoczna */
+    .player-up-container {
+        width: 600px !important; /* Znacznie szerszy pasek */
+        height: 55px !important;
+        top: 30px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important; /* Idealne centrowanie */
+        font-size: 22px !important; /* Większy zegar */
+        padding: 10px 25px !important;
+    }
+
+    /* 2. PRZYCISK FILMU (Ten obok Island) */
     .player-up-container-btn {
-        transform: scale(1.3) !important;
-        transform-origin: top left !important;
+        width: 65px !important;
+        height: 65px !important;
+        top: 25px !important;
+        right: 40px !important; /* Odsunięcie od krawędzi */
+    }
+    .player-up-container-btn i {
+        font-size: 30px !important; /* Większa ikonka w środku */
+        transform: translateY(15px) !important;
     }
 
-    /* 2. Skalujemy Logo i nazwę aplikacji */
+    /* 3. LOGO I NAZWA - Prestiż marki FoxNor */
     header {
-        transform: scale(1.25) !important;
-        transform-origin: left center !important;
-        margin-bottom: 20px !important;
+        margin-bottom: 25px !important;
+    }
+    .player-logo-img {
+        width: 60px !important;
+        height: 60px !important;
+        transform: scale(1.5) !important;
+    }
+    .player-app-name {
+        font-size: 45px !important;
+        margin-left: 30px !important;
     }
 
-    /* 3. Skalujemy całą dolną sekcję (Avatar, Napisy, Przycisk 'show more') */
-    .player-info-section {
-        zoom: 1.3; /* Zoom jest bezpieczny dla tekstów, nie psuje układu */
+    /* 4. DOLNA SEKCJA (Avatar i Tytuł) */
+    .player-avatar-viz, .player-avatar, .player-spike-system {
+        width: 90px !important; /* Potężny avatar */
+        height: 90px !important;
+    }
+    .player-video-real-title {
+        font-size: 24px !important; /* Czytelny tytuł dla ochrony wzroku */
+    }
+    .player-more-btn {
+        font-size: 18px !important;
         margin-top: 15px !important;
     }
 
-    /* 4. Skalujemy pasek kontrolny wewnątrz wideo (Play, Cog, Expand) */
-    .player-controls-bar {
-        transform: scale(1.15);
-        transform-origin: bottom center;
-        width: 86.9% !important; /* Kompensacja szerokości po skali (100 / 1.15) */
-    }
-
-    /* 5. Powiększamy opis filmu w panelu dolnym */
-    .player-description-area {
-        font-size: 16px !important;
-        line-height: 1.8 !important;
+    /* 5. PASEK KONTROLNY (Ikony Play/Settings) */
+    .player-controls-bar i {
+        font-size: 32px !important; /* Wielkie ikony pod wideo */
+        margin-right: 25px !important;
     }
 }
 
