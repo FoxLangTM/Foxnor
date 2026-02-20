@@ -190,16 +190,23 @@ const foxnorPlayer = {
         window.addEventListener('resize', () => this.adjustPanelHeight());
     },
 
-onYouTubeReady: function(e) {
-    const frame = e.target.getIframe();
-    // Rezygnujemy z sandbox, by odzyskać punkty wydajności
-    frame.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
-
-    // Optymalizacja jakości pod sieć (to zostawiamy, jest mądre)
-    if (navigator.connection && navigator.connection.downlink < 2) {
-        this.state.ytInstance.setPlaybackQuality('medium');
+    // --- LOGIKA YOUTUBE ---
+    onYouTubeReady: function(e) {
+    if (navigator.connection) {
+        const speed = navigator.connection.downlink;
+        if (speed < 2) {
+            this.state.ytInstance.setPlaybackQuality('medium');
+        } else {
+            this.state.ytInstance.setPlaybackQuality('highres');
+        }
     }
-
+    
+    const frame = e.target.getIframe();
+    frame.removeAttribute('allow');
+    frame.setAttribute('allow', 'autoplay; encrypted-media; picture-in-picture');
+    frame.setAttribute('sandbox', 'allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-presentation');
+    frame.setAttribute('referrerpolicy', 'no-referrer-when-downgrade');
+    
     this.fetchOEmbed(); 
     this.updateProgress();
     this.setupGestures(); 
@@ -408,7 +415,7 @@ onYouTubeReady: function(e) {
                             avatarDiv.classList.add('player-loaded');
                         };
                     };
-                }, 0);
+                }, 1000);
             })
             .catch(err => console.error("Player Business Error:", err));
     },
