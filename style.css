@@ -19,7 +19,7 @@
         padding: 25px !important;
         border-radius: 50px !important;
         left: 50% !important;
-        top: 50% !important;
+        top: 35% !important;
         transform: translate(-50%, -45%) scale(0.8) !important; /* Centrowanie w obu osiach */
         box-shadow: 0 20px 80px rgba(0,0,0,0.8) !important;
     }
