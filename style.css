@@ -26,12 +26,12 @@
     
 @media screen and (min-width: 1000px), screen and (min-aspect-ratio: 16/9) {
     :root {
-        --f-scale: 1; /* Skala dla komputerów */
+        --f-scale: var(--f-scale); /* Skala dla komputerów */
     }
 }
 
 .player-up-container, .player-up-container-btn, header, .player-info-section .player-controls-bar {
-    zoom: 110%;
+    zoom: 100%;
 }
 
     /* 2. NAGŁÓWEK - Logo i Nazwa */
@@ -105,6 +105,10 @@
     .player-down-container {
         max-height: 70px !important;
     }
+    .player-video-wrapper {
+        transform: scale(0.8);
+    }
+
 }
 
 
@@ -299,7 +303,7 @@
         }
 
         /* Wrapper Wideo */
-        .player-video-wrapper { transform: translateX(-1px); cursor: none; position: relative; width: 100% !important; aspect-ratio: 2010/1136 !important; height: auto !important; border-radius: 17.5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4);}
+        .player-video-wrapper { cursor: none; position: relative; width: 100% !important; aspect-ratio: 2010/1136 !important; height: auto !important; border-radius: 17.5px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.4);}
          
         .player-custom-cursor {
             width: 8px; height: 8px;
