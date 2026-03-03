@@ -101,9 +101,8 @@
         font-size: 14px !important;
         margin-top: 10px !important;
     }
-    .player-description-area {
-        font-size: 15px !important; /* Większy opis dla ochrony wzroku */
-        max-height: 250px !important;
+    .player-down-container {
+        max-height: 70px !important;
     }
 }
 
