@@ -26,7 +26,7 @@
     
 @media screen and (min-width: 1000px), screen and (min-aspect-ratio: 16/9) {
     :root {
-        --f-scale: 2; /* Skala dla komputerów */
+        --f-scale: 1.2; /* Skala dla komputerów */
     }
 }
 
@@ -42,7 +42,7 @@
     .player-logo-img {
         width: 45px !important;
         height: 45px !important;
-        transform: scale(1.6) !important;
+        transform: scale(1.2) !important;
     }
     .player-app-name {
         font-size: 34px !important;
