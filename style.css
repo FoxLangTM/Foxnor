@@ -31,7 +31,7 @@
 }
 
 .player-up-container, .player-up-container-btn, header, .player-info-section .player-controls-bar {
-    zoom: var(--f-scale);
+    zoom: 0.8;
 }
 
     /* 2. NAGŁÓWEK - Logo i Nazwa */
