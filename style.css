@@ -20,7 +20,7 @@
         border-radius: 50px !important;
         left: 50% !important;
         top: 50% !important;
-        transform: translate(-50%, -45%) !important; /* Centrowanie w obu osiach */
+        transform: translate(-50%, -45%) scale(0.8) !important; /* Centrowanie w obu osiach */
         box-shadow: 0 20px 80px rgba(0,0,0,0.8) !important;
     }
     
@@ -103,12 +103,8 @@
         margin-top: 10px !important;
     }
     .player-down-container {
-        max-height: 70px !important;
+        max-height: 50px !important;
     }
-    .player-video-wrapper {
-        transform: scale(0.8);
-    }
-
 }
 
 
