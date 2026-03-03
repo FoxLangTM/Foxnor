@@ -31,7 +31,7 @@
 }
 
 .player-up-container, .player-up-container-btn, header, .player-info-section .player-controls-bar {
-    zoom: 80%;
+    zoom: 110%;
 }
 
     /* 2. NAGŁÓWEK - Logo i Nazwa */
@@ -72,6 +72,7 @@
     .player-video-wrapper {
         border-radius: 30px !important;
         border-width: 2px !important;
+        width: 75%;
     }
     .player-controls-bar {
         height: 75px !important;
